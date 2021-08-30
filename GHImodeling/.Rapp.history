@@ -1,0 +1,463 @@
+names(f)
+head(f, 1)
+dim(f)
+row.names(f)
+row.names(f) <- 1:8760
+head(f)
+str(f)
+tail(f)
+install.packages("jsonlite")
+install.packages("ggplot2")
+install.packages("jsonlite")
+library(josnlite)
+library(jsonlite)
+library("jsonlite")
+url = "http://app.solarfamily.in/api/v1/get/all-readings?email=data@solarfamily.in&password=glaMnOPvMZOdoRAl&device_id=865904027419679"
+doc <- fromJSON(text = url)
+doc <- fromJSON(txt = url)
+install.packages("curl")
+doc <- fromJSON(txt = url)
+head(doc)
+head(doc, 10)
+str(doc)
+ls()
+head(doc)
+str(doc)
+getwd()
+install.packages("UsingR")
+library(UsingR)
+data(galton)
+library(reshape)
+install.packages(reshape)
+install.packages("reshape")
+library(reshape)
+head(galton)
+library(ggplot2)
+long <- melt(galton)
+long
+str(long)
+g <- gglplot(long, aes(x = value, fill = variable))
+g <- ggplot(long, aes(x = value, fill = variable))
+g
+g <- g + geom_histogram(colour = "black", binwidth = 1)
+g <- g + facet_grid(.~variable)
+g
+?ggplot
+g
+library(manipulate)
+install.packages("manipulate")
+library(manipulate)
+ggplot(galton, aes(x = parent, y = child)) + geom_points()
+ggplot(galton, aes(x = parent, y = child)) + geom_point()
+library(dplyr)#
+# constructs table for different combination of parent-child height#
+freqData <- as.data.frame(table(galton$child, galton$parent))#
+names(freqData) <- c("child (in)", "parent (in)", "freq")#
+# convert to numeric values#
+freqData$child <- as.numeric(as.character(freqData$child))#
+freqData$parent <- as.numeric(as.character(freqData$parent))#
+# filter to only meaningful combinations#
+g <- ggplot(filter(freqData, freq > 0), aes(x = parent, y = child))#
+g <- g + scale_size(range = c(2, 20), guide = "none" )#
+# plot grey circles slightly larger than data as base (achieve an outline effect)#
+g <- g + geom_point(colour="grey50", aes(size = freq+10, show_guide = FALSE))#
+# plot the accurate data points#
+g <- g + geom_point(aes(colour=freq, size = freq))#
+# change the color gradient from default to lightblue -> $white#
+g <- g + scale_colour_gradient(low = "lightblue", high="white")#
+g
+library(dplyr)
+install.packages("dplyr")
+library(dplyr)
+freqData <- as.data.frame(table(galton$child, galton$parent))#
+names(freqData) <- c("child (in)", "parent (in)", "freq")#
+# convert to numeric values#
+freqData$child <- as.numeric(as.character(freqData$child))#
+freqData$parent <- as.numeric(as.character(freqData$parent))#
+# filter to only meaningful combinations#
+g <- ggplot(filter(freqData, freq > 0), aes(x = parent, y = child))#
+g <- g + scale_size(range = c(2, 20), guide = "none" )#
+# plot grey circles slightly larger than data as base (achieve an outline effect)#
+g <- g + geom_point(colour="grey50", aes(size = freq+10, show_guide = FALSE))#
+# plot the accurate data points#
+g <- g + geom_point(aes(colour=freq, size = freq))#
+# change the color gradient from default to lightblue -> $white#
+g <- g + scale_colour_gradient(low = "lightblue", high="white")#
+g
+?filter
+freqData <- as.data.frame(table(galton$child, galton$parent))
+frqData
+str(freqData)
+names(freqData) <- c("child (in)", "parent (in)", "freq")
+freqData <- as.data.frame(table(galton$child, galton$parent))#
+names(freqData) <- c("child (in)", "parent (in)", "freq")#
+# convert to numeric values#
+freqData$child <- as.numeric(as.character(freqData$child))#
+freqData$parent <- as.numeric(as.character(freqData$parent))
+head(freqData)
+head(galton)
+(table(galton$child, galton$parent)
+table(galton$child, galton$parent)
+as.data.frame(table(galton$child, galton$parent))
+filter(freqData, freq > 0)
+class(filter(freqData, freq > 0))
+??scale_size
+# load father.son data#
+data(father.son)#
+# normalize son's height#
+y <- (father.son$sheight - mean(father.son$sheight)) / sd(father.son$sheight)#
+# normalize father's height#
+x <- (father.son$fheight - mean(father.son$fheight)) / sd(father.son$fheight)#
+# calculate correlation#
+rho <- cor(x, y)#
+# plot the relationship between the two#
+g = ggplot(data.frame(x = x, y = y), aes(x = x, y = y))#
+g = g + geom_point(size = 3, alpha = .2, colour = "black")#
+g = g + geom_point(size = 2, alpha = .2, colour = "red")#
+g = g + xlim(-4, 4) + ylim(-4, 4)#
+# reference line for perfect correlation between#
+# variables (data points will like on diagonal line)#
+g = g + geom_abline(position = "identity")#
+# if there is no correlation between the two variables,#
+# the data points will lie on horizontal/vertical lines#
+g = g + geom_vline(xintercept = 0)#
+g = g + geom_hline(yintercept = 0)#
+# plot the actual correlation for both#
+g = g + geom_abline(intercept = 0, slope = rho, size = 2)#
+g = g + geom_abline(intercept = 0, slope = 1 / rho, size = 2)#
+# add appropriate labels#
+g = g + xlab("Father's height, normalized")#
+g = g + ylab("Son's height, normalized")#
+g = g + geom_text(x = 3.8, y = 1.6, label="x~y", angle = 25) +#
+    geom_text(x = 3.2, y = 3.6, label="cor(y,x)=1", angle = 35) +#
+    geom_text(x = 1.6, y = 3.8, label="y~x", angle = 60)#
+g
+library(manilpualte)
+library(manipulate)
+myPlot <- function(beta){#
+  y <- galton$child - mean(galton$child)#
+  x <- galton$parent - mean(galton$parent)#
+  freqData <- as.data.frame(table(x, y))#
+  names(freqData) <- c("child", "parent", "freq")#
+  plot(#
+    as.numeric(as.vector(freqData$parent)), #
+    as.numeric(as.vector(freqData$child)),#
+    pch = 21, col = "black", bg = "lightblue",#
+    cex = .15 * freqData$freq, #
+    xlab = "parent", #
+    ylab = "child"#
+    )#
+  abline(0, beta, lwd = 3)#
+  points(0, 0, cex = 2, pch = 19)#
+  mse <- mean( (y - beta * x)^2 )#
+  title(paste("beta = ", beta, "mse = ", round(mse, 3)))#
+}#
+manipulate(myPlot(beta), beta = slider(0.6, 1.2, step = 0.02))
+data(father.son)#
+# normalize son's height#
+y <- (father.son$sheight - mean(father.son$sheight)) / sd(father.son$sheight)#
+# normalize father's height#
+x <- (father.son$fheight - mean(father.son$fheight)) / sd(father.son$fheight)#
+# calculate correlation#
+rho <- cor(x, y)#
+# plot the relationship between the two#
+g = ggplot(data.frame(x = x, y = y), aes(x = x, y = y))#
+g = g + geom_point(size = 3, alpha = .2, colour = "black")#
+g = g + geom_point(size = 2, alpha = .2, colour = "red")#
+g = g + xlim(-4, 4) + ylim(-4, 4)#
+# reference line for perfect correlation between#
+# variables (data points will like on diagonal line)#
+g = g + geom_abline(position = "identity")#
+# if there is no correlation between the two variables,#
+# the data points will lie on horizontal/vertical lines#
+g = g + geom_vline(xintercept = 0)#
+g = g + geom_hline(yintercept = 0)#
+# plot the actual correlation for both#
+g = g + geom_abline(intercept = 0, slope = rho, size = 2)#
+g = g + geom_abline(intercept = 0, slope = 1 / rho, size = 2)
+library(UsingR)
+data(father.son)#
+# normalize son's height#
+y <- (father.son$sheight - mean(father.son$sheight)) / sd(father.son$sheight)#
+# normalize father's height#
+x <- (father.son$fheight - mean(father.son$fheight)) / sd(father.son$fheight)#
+# calculate correlation#
+rho <- cor(x, y)#
+# plot the relationship between the two#
+g = ggplot(data.frame(x = x, y = y), aes(x = x, y = y))#
+g = g + geom_point(size = 3, alpha = .2, colour = "black")#
+g = g + geom_point(size = 2, alpha = .2, colour = "red")#
+g = g + xlim(-4, 4) + ylim(-4, 4)#
+# reference line for perfect correlation between#
+# variables (data points will like on diagonal line)#
+g = g + geom_abline(position = "identity")#
+# if there is no correlation between the two variables,#
+# the data points will lie on horizontal/vertical lines#
+g = g + geom_vline(xintercept = 0)#
+g = g + geom_hline(yintercept = 0)#
+# plot the actual correlation for both#
+g = g + geom_abline(intercept = 0, slope = rho, size = 2)#
+g = g + geom_abline(intercept = 0, slope = 1 / rho, size = 2)
+g
+rho
+g
+x <- c(0.18, -1.54, 0.42, 0.95)
+w <- c(2, 1, 3, 1)
+x*w
+a = x*w
+mean(a)
+x <- c(0.8, 0.47, 0.51, 0.73, 0.36, 0.58, 0.57, 0.85, 0.44, 0.42)
+y <- c(1.39, 0.72, 1.55, 0.48, 1.19, -1.59, 1.23, -0.65, 1.49, 0
+)
+y <- c(1.39, 0.72, 1.55, 0.48, 1.19, -1.59, 1.23, -0.65, 1.49, 0.05)
+a = data.frame(x = x, y = y)
+a
+lm(y ~ x, data = a)
+lm(y ~ x -1, data = a)
+plot(x, y)
+x <- c(8.58, 10.46, 9.01, 9.64, 8.86)
+mean(x)
+y <- x - mean(x)
+y
+y <- y/sd(x)
+y
+x <- c(0.8, 0.47, 0.51, 0.73, 0.36, 0.58, 0.57, 0.85, 0.44, 0.42)
+y <- c(1.39, 0.72, 1.55, 0.48, 1.19, -1.59, 1.23, -0.65, 1.49, 0.05)
+a <- c(0.18, -1.54, 0.42, 0.95)
+mean(a)
+library(dataset)
+library(datasets)
+data(mtcars)
+head(mtcars)
+lm(mpg ~ wt, data = mtcars)
+a = lm(mpg ~ wt, data = mtcars)
+coeff(a)
+coef(a)
+x
+y
+a = data.frame(x = x, y = y)
+lm(y ~ x, data = a)
+coef(lm(y ~ x, data = a))
+url = "https://api.forecast.io/forecast/b329750daf1e3917e2a43ff3f4383062/12.9102997,77.6281508"
+library(jsonlite)
+doc <- fromJSON(text = url)
+doc <- fromJSON(txt = url)
+head(doc)
+str(dic)
+str(doc)
+?lm
+x <- c(-0.5, 0, 1, 1.5)
+y  <- c(0, 0, 2, 0, 0)
+plot(x, y, lwd = 3, frame = FALSE, type = 'l')
+x <- c(-0.5, 0, 1,1, 1.5)
+plot(x, y, lwd = 3, frame = FALSE, type = 'l')
+pbeta(0.75, 2, 1)
+qbeta(0.5, 2, 1)
+ls
+ls()
+?clear
+filenames=list.files(path = "~/documents/GHImodeling/BangaloreGHI", full.names=TRUE)#
+#
+##Creating the dat variable joining all the rows from files in folder#
+dat <- data.frame()
+f <- read.csv(file = filenames[9], skip = 1)
+dat <- rbind(dat, f)
+doc <- dat#
+#
+doc$datetime = paste(doc[, 1], doc[, 2], sep = " ")#
+doc$datetime <- strptime(doc$datetime, format='%m/%d/%Y %H:%M')#
+#
+doc$hour <- strftime(doc$datetime, format = "%H")#
+doc$hour <- as.integer(doc$hour)#
+doc$hour <- doc$hour + 1#
+doc$day <- strftime(doc$datetime, format = "%j")#
+doc$day <- as.integer(doc$day)#
+#
+doc$week <- doc$day%/%7#
+doc$week <- doc$week + 1#
+#
+doc$month <- strftime(doc$datetime, format = "%m")#
+doc$month <- as.integer(doc$month)#
+#
+doc$year <- strftime(doc$datetime, format = "%Y")#
+doc$year <- as.integer(doc$year)#
+#
+##Creating a GHI taining dataset containg the required columns for building the model#
+ghi <- data.frame(id = 1:nrow(doc))#
+#
+ghi$datetime <- doc$datetime#
+ghi$hour <- doc$hour#
+ghi$day <- doc$day#
+ghi$week <- doc$week#
+ghi$month <- doc$month#
+ghi$year <- doc$year#
+ghi$ghi <- doc$GHI..W.m.2.
+head(ghi)
+t1 <- read.csv("s3841172.txt")
+head(t1)
+t1[which(t1[, 4]) < 0), 4] = 0
+t1[which(t1[, 4] < 0), 4] = 0
+head(t1)
+head(t1, 10)
+y1 <- cbind(ghi, t1)
+head(y1)
+par(mfrow = c(1,1))
+par(mfrow = c(2,1))
+plot(y1$hour, y1$ghi)
+plot(y1$hour, y1$Cos.zenith)
+d = y1
+c = y1
+d = split(c, day)#
+#
+rev = d#
+#
+for(i in 1:99)#
+{rev[[i]][7:19, 12] <- d[[i]][19:7, 12]}#
+#
+e = do.call(rbind, rev)#
+#
+fi = data.frame(no = 1:99)#
+#
+for(i in 1:99)#
+{#
+fit = lm(ghi ~ Cos.zenith, data = d[[i]])#
+fit2 = lm(ghi ~ Cos.zenith, data = rev[[i]])#
+fi$corfit1[i] = cor(fitted(fit), d[[i]]$ghi)#
+fi$corfit2[i] = cor(fitted(fit2), rev[[i]]$ghi)#
+}
+y1$day <- as.factor(y1$day)
+str(y1)
+c = y1
+d = split(c, c$day)#
+#
+rev = d#
+#
+for(i in 1:99)#
+{rev[[i]][7:19, 12] <- d[[i]][19:7, 12]}#
+#
+e = do.call(rbind, rev)#
+#
+fi = data.frame(no = 1:99)
+for(i in 1:99)#
+{#
+fit = lm(ghi ~ Cos.zenith, data = d[[i]])#
+fit2 = lm(ghi ~ Cos.zenith, data = rev[[i]])#
+fi$corfit1[i] = cor(fitted(fit), d[[i]]$ghi)#
+fi$corfit2[i] = cor(fitted(fit2), rev[[i]]$ghi)#
+}
+fi
+d[[1]]
+e[[1]]
+rev[[1]]
+d[[1]]
+par(mfrow = c(2,1))
+plot(y1$hour, y1$Cos.zenith)
+plot(y1$hour, y1$ghi)
+plot(e$hour, e$ghi)
+plot(y1$hour, y1$ghi)
+plot(e$hour, e$ghi)
+plot(y1$hour, y1$ghi)
+head(e)
+head(e, 10)
+plot(e$hour, e$Cos.zenith)
+plot(e$hour, e$ghi)
+plot(y1$hour, y1$Cos.zenith)
+plot(e$hour, e$ghi)
+plot(e$hour, e$Cos.zenith)
+plot(y1$hour, y1$ghi)
+ls()
+fi
+plot(fi$corfit1)
+plot(fi$corfit2)
+mean(f1$corfit1)
+mean(fi$corfit1)
+mean(fi$corfit2)
+cor(y1$ghi, y1$Cos.zenith)
+cor(e$ghi, e$Cos.zenith)
+corfit1 > corfit2
+fi$corfit1 > fi$corfit2
+fit <- lm(ghi ~ Cos.zenith, data = y1 )
+cor(fitted(fit), y1$ghi
+)
+t1 = read.csv("s3841172.txt")#
+t1[which(t1[, 4]) < 0), 4] = 0#
+#
+y1 <- cbind(ghi, t1)
+t1 = read.csv("s3841172.txt")#
+t1[which(t1[, 4] < 0), 4] = 0#
+#
+y1 <- cbind(ghi, t1)
+head(y1)
+c = y1#
+d = split(c, c$day)#
+#
+rev = d#
+#
+for(i in 1:365)#
+{rev[[i]][7:19, 12] <- d[[i]][19:7, 12]}#
+#
+e = do.call(rbind, rev)#
+#
+fi = data.frame(no = 1:365)#
+#
+for(i in 1:365)#
+{#
+fit = lm(ghi ~ Cos.zenith, data = d[[i]])#
+fit2 = lm(ghi ~ Cos.zenith, data = rev[[i]])#
+fi$corfit1[i] = cor(fitted(fit), d[[i]]$ghi)#
+fi$corfit2[i] = cor(fitted(fit2), rev[[i]]$ghi)#
+#
+}
+fi
+fi$corfit1 > f1$corfit2
+fi$corfit1 > fi$corfit2
+sum(fi$corfit1 > fi$corfit2)
+plot(fi$no, fi$corfit1)#
+plot(fi$no, fi$corfit2)
+cor(fi$ghi, f1$Cos.zenith)
+cor(fi$ghi, fi$Cos.zenith)
+head(fi)
+cor(y1$ghi, y1$Cos.zenith)
+ys1 <- subset(y1, y1$day < 100)
+tail(ys1)
+dim(ys1)
+dim(y1)
+2376/24
+cor(ys1$ghi, ys1$Cos.zenith)
+ys1 <- subset(y1, y1$day < 150)
+cor(ys1$ghi, ys1$Cos.zenith)
+ys1 <- subset(y1, y1$day < 120)
+cor(ys1$ghi, ys1$Cos.zenith)
+ys1 <- subset(y1, y1$day > 150 & y1$day < 350)
+cor(ys1$ghi, ys1$Cos.zenith)
+plot(ys1$hour, ys1$ghi)
+plot(ys1$hour, ys1$COs.zenith)
+plot(ys1$hour, ys1$Cos.zenith)
+plot(ys1$hour, ys1$ghi)
+fi
+fi[which(fi$corfit1 < 96), ]
+fi[which(fi$corfit1 < 0.96), ]
+fi[which(fi$corfit1 < 0.90), ]
+fi[which(fi$corfit1 < 0.80), ]
+fi[which(fi$corfit1 < 0.85), ]
+fi[which(fi$corfit1 < 0.88), ]
+ys1 <- subset(y1, y1$day == 233)
+ys1
+ys1 <- subset(y1, y1$day == 234)
+ys1
+ys1 <- subset(y1, y1$day == 2)
+ys1
+ys1 <- subset(y1, y1$day < 100)
+fit <- lm(ghi ~ Cos.zenith, data = ys1)
+fit
+fit <- lm(ghi ~ Cos.zenith - 1, data = ys1)
+fit
+cor(fitted(fit), ys1$ghi)
+fit <- lm(ghi ~ Cos.zenith, data = ys1)
+cor(fitted(fit), ys1$ghi)
+plot(fitted(fit), ys1$ghi)
+plot(fitted(fit), ys1$ghi, type = ';')
+plot(fitted(fit), ys1$ghi, type = '.')
+plot(fitted(fit), ys1$ghi, pch = '.')
+1098 * 0.4790 * exp(-0.057/0.4790)
+1098 * 0.9951 * exp(-0.057/0.9951)
